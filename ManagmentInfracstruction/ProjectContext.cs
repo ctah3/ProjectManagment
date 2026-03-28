@@ -36,6 +36,13 @@ public partial class ProjectContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.HasPostgresEnum<ProjectStatusEnum>();
+
+        modelBuilder.Entity<Status>(entity =>
+        {
+            entity.Property(e => e.statusType).HasColumnName("status");
+        });
+
         modelBuilder.Entity<Project>(entity =>
         {
             entity.HasKey(e => e.ProjectId).HasName("Projects_pkey");

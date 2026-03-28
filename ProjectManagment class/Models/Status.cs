@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProjectManagment_class.Models
 {
-    internal class Status : Entity
+    public class Status : Entity
     {
         public ProjectStatusEnum statusType { get; set; }
     }
