@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ProjectManagment_class.Models;
 
-public partial class ProjectMember : Entity
+public partial class ProjectMember
 {
     public int ProjectMembersId { get; set; }
 

@@ -1,0 +1,36 @@
+﻿@model ProjectManagment_class.Models.Report
+
+@{
+    ViewData["Title"] = "Деталі звіту";
+}
+
+<h1>Деталі звіту</h1>
+
+<div>
+
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CreatedAt)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CreatedAt)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Content)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Content)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Assignment)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Assignment.AssignmentId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.ReportId">Редагувати</a> |
+    <a asp-action="Index">Повернутись</a>
+</div>

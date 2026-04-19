@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ProjectManagment_class.Models;
 
-public partial class TaskAssignment : Entity
+public partial class TaskAssignment
 {
     public int AssignmentId { get; set; }
 

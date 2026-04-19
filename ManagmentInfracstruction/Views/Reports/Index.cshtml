@@ -1,0 +1,46 @@
+﻿@model IEnumerable<ProjectManagment_class.Models.Report>
+
+@{
+    ViewData["Title"] = "Звіт";
+}
+
+
+<p>
+    <a asp-action="Create">Створити звіт</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedAt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Content)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Assignment)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Content)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Assignment.AssignmentId)
+            </td>
+            <td>
+                    <a asp-action="Edit" asp-route-id="@item.ReportId">Редагувати</a> |
+                <a asp-action="Details" asp-route-id="@item.ReportId">Деталі</a> |
+                <a asp-action="Delete" asp-route-id="@item.ReportId">Видалити</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

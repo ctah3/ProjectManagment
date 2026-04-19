@@ -16,7 +16,7 @@ public partial class ProjectContext : DbContext
         : base(options)
     {
     }
-
+   
     public virtual DbSet<Project> Projects { get; set; }
 
     public virtual DbSet<ProjectMember> ProjectMembers { get; set; }
@@ -29,22 +29,22 @@ public partial class ProjectContext : DbContext
 
     public virtual DbSet<User> Users { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseNpgsql("Host=localhost;Database=db;Username=postgres;Password=7570");
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { }
+#warning
 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.HasPostgresEnum<ProjectStatusEnum>();
+        modelBuilder.Entity<Project>()
+    .Property(p => p.ProjectId)
+    .HasColumnName("projectid") // Убедитесь, что в базе имя маленькими буквами
+    .UseIdentityByDefaultColumn();
 
-        modelBuilder.Entity<Status>(entity =>
-        {
-            entity.Property(e => e.statusType).HasColumnName("status");
-        });
+
 
         modelBuilder.Entity<Project>(entity =>
         {
+            entity.Ignore(e => e.ProjectId);
             entity.HasKey(e => e.ProjectId).HasName("Projects_pkey");
 
             entity.Property(e => e.ProjectId)
@@ -156,6 +156,7 @@ public partial class ProjectContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
+
             entity.HasKey(e => e.UserId).HasName("Users_pkey");
 
             entity.Property(e => e.UserId)

@@ -1,0 +1,58 @@
+﻿@model IEnumerable<ProjectManagment_class.Models.Task>
+
+@{
+    ViewData["Title"] = "Задачі";
+}
+
+
+<p>
+    <a asp-action="Create">Створити задачу</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Priority)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Deadline)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Project)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Priority)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Deadline)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Project.Description)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.TaskId">Редагувати</a> |
+                <a asp-action="Details" asp-route-id="@item.TaskId">Деталі</a> |
+                <a asp-action="Delete" asp-route-id="@item.TaskId">Видалити</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

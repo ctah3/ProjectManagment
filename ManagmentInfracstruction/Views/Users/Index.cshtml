@@ -1,0 +1,53 @@
+﻿@model IEnumerable<ProjectManagment_class.Models.User>
+
+@{
+    ViewData["Title"] = "Користувачі";
+}
+
+<h1>Користувачі</h1>
+
+<p>
+    <a asp-action="Create">Додати нового учасника</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.UserId">Редагувати</a> |
+                <a asp-action="Details" asp-route-id="@item.UserId">Деталі</a> |
+                <a asp-action="Delete" asp-route-id="@item.UserId">Видалити</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
